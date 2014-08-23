@@ -5,10 +5,9 @@ import (
 )
 
 type AppAPI interface {
-	Login(identifier, password string) *User
-	LoginAsAdmin(clientId, clientSecret string) *User
+	Login(identifier, password string) (*User, string, error)
+	LoginAsAdmin(clientId, clientSecret string) (*User, string, error)
+	SignUp(info rj.RawJsonObject, password string) (*User, error)
 
-	SignUp(info rj.RawJsonObject, password string) *User
-
-	UserAPI() UserAPI
+	//	UserAPI() UserAPI
 }
