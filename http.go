@@ -8,26 +8,26 @@ type HttpClientFactory interface {
 	NewClient() HttpClient
 }
 
-type HttpMethod string
+type HttpMethod int
 
 const (
-	HTTP_GET    HttpMethod = "GET"
-	HTTP_POST   HttpMethod = "POST"
-	HTTP_PUT    HttpMethod = "PUT"
-	HTTP_DELETE HttpMethod = "DELETE"
+	HTTP_GET HttpMethod = iota
+	HTTP_POST
+	HTTP_PUT
+	HTTP_DELETE
 )
 
 type HttpHeader map[string]string
 
 type HttpClient interface {
-	SendJsonRequest(methdo HttpMethod,
+	SendJsonRequest(method HttpMethod,
 		url string,
 		header HttpHeader,
 		body rj.RawJsonObject) (*HttpResponse, error)
 }
 
 type HttpResponse struct {
-	status int
-	body   rj.RawJsonObject
-	etag   string
+	Status int
+	Body   rj.RawJsonObject
+	Etag   string
 }
